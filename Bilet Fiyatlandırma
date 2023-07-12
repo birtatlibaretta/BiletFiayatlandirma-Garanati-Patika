@@ -1,0 +1,45 @@
+import java.util.*;
+
+public class BiletFiyatlandırma {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int mesafe, yaş, seyahatTipi;
+        double kmBaşınaİndirim = 0.10;
+        double toplamÜcret = 0.0;
+
+        System.out.println("Mesafeyi km Cinsinden Giriniz: ");
+        mesafe = sc.nextInt();
+
+        System.out.println("Yaşınızı Giriniz: ");
+        yaş = sc.nextInt();
+
+        System.out.println("Seyahat Tipini Girin (1 => Tek Yön, 2 => Gidiş Dönüş): ");
+        seyahatTipi = sc.nextInt();
+
+        if (mesafe <= 0 || yaş < 0 || seyahatTipi < 1 || seyahatTipi > 2) {
+            System.out.println("Hatalı Bilgi Girdiniz");
+            return;
+        }
+
+        double standartÜcret = mesafe * kmBaşınaindirim;
+
+        double yaşİndirimi = 0.0;
+        if (yaş < 12) {
+            yaşİndirimi = standartÜcret * 0.5;
+        } else if (yaş >= 65) {
+            yaşİndirimi = standartÜcret * 0.3;
+        }
+
+        double indirimliÜcret = standartÜcret - yaşİndirimi;
+
+        double seyahatTipiİndirimi = 0.0;
+        if (seyahatTipi == 2) {
+            seyahatTipiİndirimi = indirimliÜcret * 0.2;
+        }
+
+        toplamÜcret = indirimliÜcret - seyahatTipiİndirimi;
+
+        System.out.println("Toplam Ücret = " + toplamÜcret);
+    }
+}
